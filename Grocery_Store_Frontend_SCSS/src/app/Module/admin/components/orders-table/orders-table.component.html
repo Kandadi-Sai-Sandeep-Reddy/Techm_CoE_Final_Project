@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>Order Management</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>User</th>
+          <th>Total Price</th>
+          <th>Status</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orderItems">
+          <td>{{ order.id }}</td>
+          <td>{{ order.user?.email }}</td>
+          <td>{{ order.totalPrice | currency }}</td>
+          <td>{{ order.orderStatus }}</td>
+          <td>{{order.shippingAddress.streetAddress}},{{order.shippingAddress.city}},{{order.shippingAddress.state}},{{order.shippingAddress.zipCode}} </td>
+          <td>{{ order.orderStatus }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="changeOrderStatus(order.id, 'confirmed')" >Confirm</button>
+            <button class="btn btn-info" (click)="changeOrderStatus(order.id, 'ship')" >Ship</button>
+            <button class="btn btn-success" (click)="changeOrderStatus(order.id, 'deliver')" >Deliver</button>
+          </td>
+  
+        </tr>
+      </tbody>
+    </table>
+</div>  

@@ -1,0 +1,28 @@
+.dashboard {
+    text-align: center;
+  }
+  
+  .dashboard-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .dashboard-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+  }
+  
+  .dashboard-card h2 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .dashboard-card p {
+    margin: 10px 0 0;
+    font-size: 2em;
+    color: #007bff;
+  }
+  

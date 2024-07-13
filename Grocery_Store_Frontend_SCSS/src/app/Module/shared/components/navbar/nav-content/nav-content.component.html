@@ -1,0 +1,37 @@
+<div class="w-full">
+  <div class="bg-gray-950 text-white w-full h-1/2 shadow-lg p-6">
+    <div class="flex justify-around">
+      <div
+        class="flex flex-col"
+        *ngFor="let item of category[selectedSection].sections"
+      >
+        <h1 class="text-center">{{ item.name }}</h1>
+
+        <button (click)="handleNavigate('/'+selectedSection+'/'+item.id+'/'+section.id)" mat-button *ngFor="let section of item.items">
+          {{ section.name }}
+        </button>
+      </div>
+
+      <div class="hidden lg:block">
+        <div class="mb-5">
+          <img
+            class="w-[19rem] h-[20rem] object-cover object-top rounded-md"
+            src="https://media.istockphoto.com/id/493687446/photo/fresh-garden-vegetablesin-vintage-metal-basket.jpg?s=612x612&w=is&k=20&c=nrqSC4eeuMj6vBsP-K5jrxJL3UkEVuyA1ks5EGt8kbg="
+            alt=""
+          />
+        </div>
+        <p class="text-gray-600">New Arrivals</p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="mb-5">
+          <img
+            class="w-[19rem] h-[20rem] object-cover object-top rounded-md"
+            src="https://media.istockphoto.com/id/493687446/photo/fresh-garden-vegetablesin-vintage-metal-basket.jpg?s=612x612&w=is&k=20&c=nrqSC4eeuMj6vBsP-K5jrxJL3UkEVuyA1ks5EGt8kbg="
+            alt=""
+          />
+        </div>
+        <p class="text-gray-600">New Arrivals</p>
+      </div>
+    </div>
+  </div>
+</div>

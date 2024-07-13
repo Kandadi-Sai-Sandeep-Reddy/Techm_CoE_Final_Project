@@ -1,0 +1,107 @@
+<div class="container">
+    <h2>Admin Product Management</h2>
+  
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" formControlName="title" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input id="description" formControlName="description" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input id="price" formControlName="price" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="discountedPrice">Discounted Price</label>
+        <input id="discountedPrice" formControlName="discountedPrice" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="discountPercent">Discount Percent</label>
+        <input id="discountPercent" formControlName="discountPercent" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="storename">Store Name</label>
+        <input id="storename" formControlName="storename" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input id="color" formControlName="color" class="form-control" />
+      </div>
+  
+      <div formArrayName="size">
+        <div *ngFor="let sizeGroup of sizesArray.controls; let i = index" class="form-group">
+          <label for="size{{ i }}">Size</label>
+          <input id="size{{ i }}" formControlName="name" class="form-control" />
+          <label for="quantity{{ i }}">Quantity</label>
+          <input id="quantity{{ i }}" formControlName="quantity" class="form-control" />
+          <button type="button" (click)="removeSize(i)">Remove Size</button>
+        </div>
+      </div>
+  
+      <button type="button" (click)="addSize()">Add Size</button>
+  
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input id="imageUrl" formControlName="imageUrl" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="topLevelCategory">Top Level Category</label>
+        <select id="topLevelCategory" formControlName="topLevelCategory" class="form-control">
+          <option value="">Select Top Level Category</option>
+          <option value="1">Food</option>
+          <option value="2">Household and Personal Care</option>
+        </select>
+      </div>
+      
+      <!-- Second Level Categories -->
+      <div class="form-group" *ngIf="productForm.get('topLevelCategory')?.value">
+        <label for="secondLevelCategory">Second Level Category</label>
+        <select id="secondLevelCategory" formControlName="secondLevelCategory" class="form-control">
+          <option value="">Select Second Level Category</option>
+          <ng-container *ngIf="productForm.get('topLevelCategory')?.value === '1'">
+            <option value="3">Fresh Produce</option>
+            <option value="4">Packaged Foods</option>
+            <option value="5">Stores</option>
+          </ng-container>
+          <ng-container *ngIf="productForm.get('topLevelCategory')?.value === '2'">
+            <option value="14">Household Appliances</option>
+            <option value="15">Personal Care</option>
+          </ng-container>
+        </select>
+      </div>
+      
+      <!-- Third Level Categories -->
+      <div class="form-group" *ngIf="productForm.get('secondLevelCategory')?.value">
+        <label for="thirdLevelCategory">Third Level Category</label>
+        <select id="thirdLevelCategory" formControlName="thirdLevelCategory" class="form-control">
+          <option value="">Select Third Level Category</option>
+          <ng-container *ngIf="productForm.get('secondLevelCategory')?.value === '3'">
+            <option value="6">Leafy Vegetables</option>
+            <option value="7">Fruits</option>
+            <option value="8">Vegetables</option>
+          </ng-container>
+          <ng-container *ngIf="productForm.get('secondLevelCategory')?.value === '4'">
+            <option value="9">Dairy</option>
+            <option value="10">Meat and Seafood</option>
+            <option value="11">Pantry Staples</option>
+            <option value="12">Bakery and Bread</option>
+            <option value="13">Snacks and Beverages</option>
+          </ng-container>
+        </select>
+      </div>
+      
+  
+      <button type="submit" class="btn btn-primary">{{ selectedProduct ? 'Update' : 'Create' }} Product</button>
+    </form>
+  </div>
+  
